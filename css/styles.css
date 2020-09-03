@@ -1,0 +1,184 @@
+body{
+    background: #f4f6f9!important;
+    padding: 0px;
+    margin: 0px;
+}
+a {
+    color: #0046be!important;
+    text-decoration: none;
+}
+.form-control.bestbuy-error{
+    border-color: #bb0628 !important;
+}
+.bestbuy-error__text{
+    color: #bb0628;
+}
+.bestbuy-header{
+    background: #0046be;
+}
+.bestbuy-header__logo {
+    padding-left: 16px;
+    padding-top: 6px;
+    margin: 0;
+}
+.bestbuy-content{
+}
+.bestbuy-content__form{
+}
+.bestbuy-content__title{
+    background: #fff;
+    border-bottom: 1px solid #e0e6ef;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    margin-bottom: 24px;;
+}
+.bestbuy-content__title--h1{
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    margin: 16px 0 8px;
+    padding: 0px 15px;
+}
+.bestbuy-content__form form fieldset{
+    background: #fff;
+    border-radius: 5px;
+    padding: 24px;
+    margin-bottom: 40px;
+}
+.bestbuy-content__form .form-control{
+    font-family: Arial,sans-serif;
+    font-weight: 300;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    display: block;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 20px;
+    height: 48px;
+    padding: 12px;
+    border: 1px solid #adadad;
+    border-radius: 2px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+.bestbuy-content__form .form-group select {
+    vertical-align: middle;
+    height: 48px;
+    padding: 12px 32px 12px 12px;
+    border: 1px solid #adadad;
+    border-radius: 2px;
+    -webkit-transition: font-size .2s;
+    -o-transition: font-size .2s;
+    transition: font-size .2s;
+    outline: none;
+}
+.bestbuy-content__form .form-group label{
+    color: #1d252c;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    display: block;
+    margin: 0 0 5px;
+}
+.bestbuy-content__form .form-control:focus {
+    outline: none;
+    border: 2px solid #001e73;
+    box-shadow: 0 0 0 4px rgba(8,94,185,.15);
+}
+
+.bestbuy-content__form--button{
+    display: block;
+    background-color: #ffce00;
+    border: none;
+    padding: 15px 24px;
+    min-width: 280px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}   
+.bestbuy-content__form--button:hover{
+    background-color: #fff200;
+    border: none;
+}
+.bestbuy-content__form--button:focus{
+    border-color: #ffce00;
+    -webkit-box-shadow: 4px solid #e0e6ef;
+    box-shadow: 4px solid #e0e6ef;
+    outline: none;
+    -webkit-transition: background-color .3s ease-out;
+    -o-transition: background-color .3s ease-out;
+    transition: background-color .3s ease-out
+}
+.bestbuy-content__form textarea{
+    min-height: 140px;
+}
+.bestbuy-content__title--h2{
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+    padding: 0;
+    margin: 0 0 16px;
+}
+.bestbuy-content__product-dtls--img img{
+    width: 250px;
+    border: 2px solid #e6e1e1;
+    border-radius: 10px;
+}
+
+.dropdownIcon{
+    display: block;
+    position: absolute; 
+    right: 20px;
+    height: 24px;
+    width: 24px;
+    top: 50%;
+    margin-top: -8px;
+    pointer-events: none;
+}  
+.dropdownIcon.down{
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.bestbuy-footer{
+    background: #fff;
+    border-top: 1px solid #e0e6ef;
+    padding: 50px 0px;
+    margin-top: 50px;
+}
+.privacy-lock {
+    background: url(https://www.bestbuy.ca/ch/static/media/privacy.da803bd8.svg) no-repeat;
+    width: 40px;
+    height: 40px;
+    padding-right: 8px;
+    float: left;
+}
+.privacy-label{
+    padding-left: 50px;
+    padding-bottom: 4px;
+}
+.privacy-p{
+    padding-left: 48px;
+    font-size: 12px;
+}
+#payment-card,
+#payment-paypal{
+    display: none;  
+}
+.bestbuy-footer{
+    font-weight: 700;
+    text-align: right;
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {  
+    .bestbuy-content__form--button{min-width: 100%;}
+   
+}
+ 
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (max-width: 768px) {  
+    .dropdownIcon{margin-top: 0px;}
+}
