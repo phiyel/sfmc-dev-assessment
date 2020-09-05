@@ -20,6 +20,7 @@ let paymentCardCvv = document.querySelector('#cvv');
 let inputNumbers = document.querySelectorAll('input[type="tel"]');
 let submitBut = document.querySelector('.bestbuy-content__form--button');
 let letterNumber = /^[0-9a-zA-Z]+$/;
+let allInput =  document.querySelectorAll('input');
 
 //Pushing input data into Arr object for review
 const formDetails = [];
@@ -60,63 +61,49 @@ paymentPaypal.addEventListener('click', () =>{
 });
 
 //Focus out validations
-fName.addEventListener('focusout', function(){
-    (fName.value == '') ? fName.classList.toggle('bestbuy-error') : fName.classList.toggle('bestbuy-error'); 
-});
+//needs refactoring
+function checkInput (){
+   for(i = 0; i < allInput.length; i++){
+           
+    if(allInput[i].value == ''){
+            allInput[i].classList.toggle('bestbuy-error');
 
-lName.addEventListener('focusout', function(){
-    (lName.value == '') ? lName.classList.toggle('bestbuy-error') : lName.classList.toggle('bestbuy-error');   
-});
+        } else if((allInput[i].id == 'postalCode' && allInput[i].value.match(letterNumber))){
+            allInput[i].classList.toggle('bestbuy-error')
 
-city.addEventListener('focusout', function(){
-    (city.value == '') ? city.classList.toggle('bestbuy-error') : city.classList.toggle('bestbuy-error');   
-});
+        } else if((allInput[i].id == 'phone' && allInput[i].value.length != 10)){ 
+            allInput[i].classList.toggle('bestbuy-error')
 
-province.addEventListener('focusout', function(){
-    (province.value == '') ? province.classList.toggle('bestbuy-error') : province.classList.toggle('bestbuy-error');   
-});
+        } else if((allInput[i].id == 'email' && allInput[i].value.indexOf('@') < 1) || 
+        (allInput[i].id == 'email' && (allInput[i].value.lastIndexOf('.') - allInput[i].value.indexOf('@') < 2))){
+            allInput[i].classList.toggle('bestbuy-error')
 
-postCode.addEventListener('focusout', function(){
-    (postCode.value == '' || postCode.value.match(letterNumber)) ? postCode.classList.toggle('bestbuy-error') : postCode.classList.toggle('bestbuy-error');    
-});
+        } else if (allInput[i].id == 'addressLine' && allInput[i].value.match(letterNumber)){
+            allInput[i].classList.toggle('bestbuy-error')
 
-eMail.addEventListener('focusout', function(){
-    (eMail.value.indexOf('@') < 1 || (eMail.value.lastIndexOf('.') - eMail.value.indexOf('@') < 2) ) ? eMail.classList.toggle('bestbuy-error') : eMail.classList.toggle('bestbuy-error');
-});
+        } else if (allInput[i].id == 'creditcard' && allInput[i].value.length != 16){
+            allInput[i].classList.toggle('bestbuy-error')
 
-phoneNumb.addEventListener('focusout', function(){
-    (phoneNumb.value == '' || phoneNumb.value.length != 10 || isNaN(phoneNumb.value)) ? phoneNumb.classList.toggle('bestbuy-error') : phoneNumb.classList.toggle('bestbuy-error');
-});
-
-addLine.addEventListener('focusout', function(){
-    (addLine.value == '' && addLine.value.match(letterNumber)) ? addLine.classList.toggle('bestbuy-error') : addLine.classList.toggle('bestbuy-error');
-});
-
-delivery.addEventListener('focusout', function(){
-    (delivery.value == '') ? delivery.classList.toggle('bestbuy-error') : delivery.classList.toggle('bestbuy-error');   
-});
-
-paymentType.addEventListener('focusout', function(){
-    (paymentType.value == '') ? paymentType.classList.toggle('bestbuy-error') : paymentType.classList.toggle('bestbuy-error');   
-});
-
-paymentCard.addEventListener('focusout', function(){
-    (paymentCard.value == '') ? paymentCard.classList.toggle('bestbuy-error') : paymentCard.classList.toggle('bestbuy-error');   
-});
-
-paymentCardCvv.addEventListener('focusout', function(){
-    (paymentCardCvv.value == '') ? paymentCardCvv.classList.toggle('bestbuy-error') : paymentCardCvv.classList.toggle('bestbuy-error');   
+        } else if (allInput[i].id == 'cvv' && allInput[i].value.length != 3){
+            allInput[i].classList.toggle('bestbuy-error')
+        } else {
+            allInput[i].classList.toggle('bestbuy-error')
+        }
+    }   
+}
+Array.from(allInput).forEach(input =>{
+    input.addEventListener('focusout', checkInput);
 });
 
 //ToDo
-//Error message below each input ToDo
-
+//Error message below each input ToDo  
+ 
 // Form Validation
+// needs refactoring
 function validate(e) {
 
     e.preventDefault();
-    
-    let inputCheck = document.querySelectorAll('input[type="text"]');
+
     let firstName = fName.value;
     let lastName = lName.value;
     let email = eMail.value;
@@ -134,28 +121,7 @@ function validate(e) {
     let cardExpiryMonth = paymentCardExpiryMonth.value;
     let cardExpiryYear = paymentCardExpiryYear.value;
     let cardCvv = paymentCardCvv.value;
-        
-    for(i = 0; i < inputCheck.length; i++){
-        if(inputCheck[i].value == ''){
-            inputCheck[i].classList.toggle('bestbuy-error'); 
-        }
-    }
-
-    if(delivery.value == '' || 
-    province.value == '' || 
-    paymentType.value == '' || 
-    paymentCard.value == '' || 
-    paymentCardCvv.value == '' ||
-    phoneNumb.value == '' || 
-    eMail.value == ''){
-        delivery.classList.toggle('bestbuy-error');
-        province.classList.toggle('bestbuy-error');
-        paymentType.classList.toggle('bestbuy-error');
-        paymentCard.classList.toggle('bestbuy-error');
-        paymentCardCvv.classList.toggle('bestbuy-error');
-        phoneNumb.classList.toggle('bestbuy-error');
-        eMail.classList.toggle('bestbuy-error');
-    }
+   
     formDetails.push({
         firstName, 
         lastName, 
@@ -175,7 +141,10 @@ function validate(e) {
         cardExpiryYear,
         cardCvv
     });
-    console.log(formDetails);    
+    console.log(formDetails);   
+    
+    //run func to validate inputs
+    checkInput();
 
 }
 submitBut.addEventListener('click', validate);
