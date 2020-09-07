@@ -20,6 +20,10 @@ let paymentCardCvv = document.querySelector('#cvv');
 let inputNumbers = document.querySelectorAll('input[type="tel"]');
 let submitBut = document.querySelector('.bestbuy-content__form--button');
 let letterNumber = /^[0-9a-zA-Z]+$/;
+<<<<<<< HEAD
+=======
+let allInput =  document.querySelectorAll('input');
+>>>>>>> 9e05c9ad5295fcf79dac11fb06f290b6e423fc82
 
 //Pushing input data into Arr object for review
 const formDetails = [];
@@ -60,6 +64,7 @@ paymentPaypal.addEventListener('click', () =>{
 });
 
 //Focus out validations
+<<<<<<< HEAD
 fName.addEventListener('focusout', function(){
     (fName.value == '') ? fName.classList.toggle('bestbuy-error') : fName.classList.toggle('bestbuy-error'); 
 });
@@ -117,6 +122,51 @@ function validate(e) {
     e.preventDefault();
     
     let inputCheck = document.querySelectorAll('input[type="text"]');
+=======
+//needs refactoring
+function checkInput (){
+   for(i = 0; i < allInput.length; i++){
+           
+    if(allInput[i].value == ''){
+            allInput[i].classList.toggle('bestbuy-error');
+
+        } else if((allInput[i].id == 'postalCode' && allInput[i].value.match(letterNumber))){
+            allInput[i].classList.toggle('bestbuy-error')
+
+        } else if((allInput[i].id == 'phone' && allInput[i].value.length != 10)){ 
+            allInput[i].classList.toggle('bestbuy-error')
+
+        } else if((allInput[i].id == 'email' && allInput[i].value.indexOf('@') < 1) || 
+        (allInput[i].id == 'email' && (allInput[i].value.lastIndexOf('.') - allInput[i].value.indexOf('@') < 2))){
+            allInput[i].classList.toggle('bestbuy-error')
+
+        } else if (allInput[i].id == 'addressLine' && allInput[i].value.match(letterNumber)){
+            allInput[i].classList.toggle('bestbuy-error')
+
+        } else if (allInput[i].id == 'creditcard' && allInput[i].value.length != 16){
+            allInput[i].classList.toggle('bestbuy-error')
+
+        } else if (allInput[i].id == 'cvv' && allInput[i].value.length != 3){
+            allInput[i].classList.toggle('bestbuy-error')
+        } else {
+            allInput[i].classList.toggle('bestbuy-error')
+        }
+    }   
+}
+Array.from(allInput).forEach(input =>{
+    input.addEventListener('focusout', checkInput);
+});
+
+//ToDo
+//Error message below each input ToDo  
+ 
+// Form Validation
+// needs refactoring
+function validate(e) {
+
+    e.preventDefault();
+
+>>>>>>> 9e05c9ad5295fcf79dac11fb06f290b6e423fc82
     let firstName = fName.value;
     let lastName = lName.value;
     let email = eMail.value;
@@ -134,6 +184,7 @@ function validate(e) {
     let cardExpiryMonth = paymentCardExpiryMonth.value;
     let cardExpiryYear = paymentCardExpiryYear.value;
     let cardCvv = paymentCardCvv.value;
+<<<<<<< HEAD
         
     for(i = 0; i < inputCheck.length; i++){
         if(inputCheck[i].value == ''){
@@ -156,6 +207,9 @@ function validate(e) {
         phoneNumb.classList.toggle('bestbuy-error');
         eMail.classList.toggle('bestbuy-error');
     }
+=======
+   
+>>>>>>> 9e05c9ad5295fcf79dac11fb06f290b6e423fc82
     formDetails.push({
         firstName, 
         lastName, 
@@ -175,7 +229,14 @@ function validate(e) {
         cardExpiryYear,
         cardCvv
     });
+<<<<<<< HEAD
     console.log(formDetails);    
+=======
+    console.log(formDetails);   
+    
+    //run func to validate inputs
+    checkInput();
+>>>>>>> 9e05c9ad5295fcf79dac11fb06f290b6e423fc82
 
 }
 submitBut.addEventListener('click', validate);
