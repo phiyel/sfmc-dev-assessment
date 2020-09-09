@@ -21,6 +21,7 @@ let inputNumbers = document.querySelectorAll('input[type="tel"]');
 let submitBut = document.querySelector('.bestbuy-content__form--button');
 let letterNumber = /^[0-9a-zA-Z]+$/;
 let allInput =  document.querySelectorAll('input');
+let mainForm = document.querySelector('#form');
 
 //Pushing input data into Arr object for review
 const formDetails = [];
@@ -63,12 +64,11 @@ paymentPaypal.addEventListener('click', () =>{
 //Focus out validations
 //needs refactoring
 function checkInput (){
+    
+   
    for(i = 0; i < allInput.length; i++){
-           
-    if(allInput[i].value == ''){
-            allInput[i].classList.toggle('bestbuy-error');
-
-        } else if((allInput[i].id == 'postalCode' && allInput[i].value.match(letterNumber))){
+    
+    if((allInput[i].id == 'postalCode' && allInput[i].value.match(letterNumber))){
             allInput[i].classList.toggle('bestbuy-error')
 
         } else if((allInput[i].id == 'phone' && allInput[i].value.length != 10)){ 
@@ -86,12 +86,22 @@ function checkInput (){
 
         } else if (allInput[i].id == 'cvv' && allInput[i].value.length != 3){
             allInput[i].classList.toggle('bestbuy-error')
+
+        } else if(allInput[i].value == ''){
+            allInput[i].classList.toggle('bestbuy-error');
+
         } else {
             allInput[i].classList.toggle('bestbuy-error')
         }
     }   
 }
-Array.from(allInput).forEach(input =>{
+
+//IE Support
+// Array.from(allInput).forEach(input =>{
+//     input.addEventListener('focusout', checkInput);
+// });
+let newAllInput = Array.prototype.slice.call(allInput);
+newAllInput.forEach(input =>{
     input.addEventListener('focusout', checkInput);
 });
 

@@ -7,6 +7,9 @@ a {
     color: #0046be!important;
     text-decoration: none;
 }
+select::-ms-expand {
+    display: none;
+}
 .form-control.bestbuy-error{
     border-color: #bb0628 !important;
 }
