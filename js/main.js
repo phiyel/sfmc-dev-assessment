@@ -97,13 +97,13 @@ function checkInput (){
 }
 
 //IE Support
-// Array.from(allInput).forEach(input =>{
-//     input.addEventListener('focusout', checkInput);
-// });
-let newAllInput = Array.prototype.slice.call(allInput);
-newAllInput.forEach(input =>{
+//Polyfills for Array.from
+Array.from(allInput).forEach(input =>{
     input.addEventListener('focusout', checkInput);
 });
+//using Array.prototype.slice.call()
+//ToDo
+
 
 //ToDo
 //Error message below each input ToDo  
